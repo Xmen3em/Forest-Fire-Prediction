@@ -39,5 +39,3 @@ The following Python libraries are required to run the notebook:
 * seaborn
 * scikit-learn
 * TensorFlow/Keras
-
-### thank you
