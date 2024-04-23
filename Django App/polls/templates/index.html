@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Forest Fire Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        form {
+            margin: 0 auto;
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group">
+            <h3>x-axis</h3>
+            <input name="X" type="text" placeholder="spatial coordinate within the Montesinho park map: 1 to 9">
+        </div>
+
+        <div class="input-group">
+            <h3>y-axis</h3>
+            <input name="Y" type="text" placeholder="spatial coordinate within the Montesinho park map: 2 to 9">
+        </div>
+
+        <div class="input-group">
+            <h3>Month of the year</h3>
+            <select name="month">
+                <option selected disabled>Select</option>
+                <option value="jan">jan</option>
+                <option value="feb">feb</option>
+                <option value="mar">mar</option>
+                <option value="apr">apr</option>
+                <option value="may">may</option>
+                <option value="jun">jun</option>
+                <option value="jul">jul</option>
+                <option value="aug">aug</option>
+                <option value="sep">sep</option>
+                <option value="oct">oct</option>
+                <option value="nov">nov</option>
+                <option value="dec">dec</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <h3>Day of the week</h3>
+            <select name="day">
+                <option selected disabled>Select</option>
+                <option value="sat">sat</option>
+                <option value="sun">sun</option>
+                <option value="mon">mon</option>
+                <option value="tue">tue</option>
+                <option value="wed">wed</option>
+                <option value="thu">thu</option>
+                <option value="fri">fri</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <h3>FFMC index from the FWI system</h3>
+            <input name="FFMC" type="text" placeholder="18.7 to 96.20">
+        </div>
+
+        <div class="input-group">
+            <h3>DMC index from the FWI system</h3>
+            <input name="DMC" type="text" placeholder="1.1 to 291.3">
+        </div>
+
+        <div class="input-group">
+            <h3>DC index from the FWI system</h3>
+            <input name="DC" type="text" placeholder="7.9 to 860.6">
+        </div>
+
+        <div class="input-group">
+            <h3>ISI index from the FWI system</h3>
+            <input name="ISI" type="text" placeholder="0.0 to 56.10">
+        </div>
+
+        <div class="input-group">
+            <h3>Temperature</h3>
+            <input name="temp" type="text" placeholder="in Celsius degrees: 2.2 to 33.30">
+        </div>
+
+        <div class="input-group">
+            <h3>Relative Humidity</h3>
+            <input name="RH" type="text" placeholder="in %: 15.0 to 100">
+        </div>
+
+        <div class="input-group">
+            <h3>Wind Speed</h3>
+            <input name="wind" type="text" placeholder="in km/h: 0.40 to 9.40">
+        </div>
+
+        <div class="input-group">
+            <h3>Outside Rain</h3>
+            <input name="year" type="text" placeholder="in mm/m2 : 0.0 to 6.4">
+        </div>
+
+        <button type="submit" name="pred_button" value="Save&Next">Confirm Submission</button>
+    </form>
+
+    {% if result %}
+    <h3>the burned area of the forest (in ha) is: {{ result }}</h3>
+    <h6>this output variable is very skewed towards 0.0, thus it may make
+        sense to model with the logarithm transform</h6>
+    {% endif %}
+</body>
+
+</html>
