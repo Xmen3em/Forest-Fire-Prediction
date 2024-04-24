@@ -6,7 +6,7 @@ This repository contains a Django app that aims to predict the burned area of fo
 
 ## Table of Contents
 * [Dataset Overview](#dataset-overview)
-* [Notebook Contents](#app-contents)
+* [Notebook Contents](#notebook-contents)
 * [Requirements](#requirements)
 * [Usage](#usage)
 * [Screenshots](#screenshots)
